@@ -1,0 +1,11 @@
+# Ignore Pydantic folder
+Pydantic/
+
+# Ignore virtual environment
+myenv/
+
+# Ignore Python cache
+__pycache__/
+
+# Ignore environment variables
+.env
