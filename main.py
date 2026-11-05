@@ -137,29 +137,6 @@ def create_patient(patient:Patient):
 
 # PUT
 
-# @app.put("/edit/{patient_id}")
-# def update_patient(patient_id:str, patient_update:Patient_update): # request body
-#     data = load_data()
-#     if patient_id not in data:
-#         raise HTTPException(status_code=404,detail="Patient not found")
-#     existing_patient_info = data[patient_id]       # targeted existing data
-#     updated_patient_info = Patient_update.model_dump(exclude_unset=True)  # data that user sent,exclude the unchanged
-
-#     for key,value in updated_patient_info.items():
-#         existing_patient_info[key] = value
-
-# # bmi and verdict is not calculated,so convert existing patient info into pydantic obj,then computed_fields will be computed automatically
-# # then convert into a dict then into data and put it into that json file
-#     existing_patient_info['id']=patient_id
-#     patient_pydantic_obj = Patient(**existing_patient_info)
-#     existing_patient_info = patient_pydantic_obj.model_dump(exclude='id')
-#     data[patient_id]=existing_patient_info
-#     save_data(data)
-
-#     return JSONResponse(status_code=200,content={"message":"Patient updated"})
-    
-
-
 ##########################
 @app.put('/edit/{patient_id}')
 def update_patient(patient_id: str, patient_update: Patient_update):
@@ -175,6 +152,9 @@ def update_patient(patient_id: str, patient_update: Patient_update):
 
     for key, value in updated_patient_info.items():
         existing_patient_info[key] = value
+
+# # bmi and verdict is not calculated,so convert existing patient info into pydantic obj,then computed_fields will be computed automatically
+# # then convert into a dict then into data and put it into that json file
 
     #existing_patient_info -> pydantic object -> updated bmi + verdict
     existing_patient_info['id'] = patient_id
